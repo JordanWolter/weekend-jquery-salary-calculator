@@ -1,5 +1,6 @@
 let employeeArray = [];
 let i = 0;
+let totalSalary = 0;
 
 $(document).ready(readyNow);
 
@@ -21,9 +22,10 @@ function addEmployee(event){
     // }
 
     if(missingInput()){
-        clearInput();
+        //clearInput();
         return;
     }
+
 
     console.log('Adding new member to the family', $(this));
 
@@ -40,8 +42,15 @@ function addEmployee(event){
     employeeArray.push(newEmployee);
     console.log('Members of the family', employeeArray);
 
-    i++
+    i++;
     console.log(newEmployee.employeeIndex);
+
+    let employeeSalary = parseInt(newEmployee.salary);
+    
+    totalSalary += employeeSalary;
+    console.log(totalSalary);
+    
+    
 
     render();
 
@@ -69,21 +78,41 @@ function render(){
         </tr>
         `)
     }
+    
+    $('#totalMonthly').empty();
+    $('#totalMonthly').append(totalSalary);
+
+    //$('#month').empty();
+    //$('#month').append(`Total Monthly: $ ${totalSalary}`)
+
     clearInput();
 
 }
 
-function dltEmployee(employee){
+function dltEmployee(employeeArray){
     console.log('In dltEmployee $(this)', $(this));
+    console.log(employeeArray);
 
     $(this).parent().parent().remove();
 
     //let deleteThis = $(this).parent().parent().find('#delete').html();
 
-    let deleteThis = $(this).parent().parent().find(employee.employeeIndex);
+    let deleteThis = $(this).parent().parent().find(employeeArray.employeeIndex);
     console.log(deleteThis);
 
     employeeArray.splice(deleteThis, 1);
+
+    console.log(employeeArray);
+
+    // let subtractSalary = $(this).parent().parent().find(employee.salary);
+
+    // console.log(subtractSalary);
+
+    // totalSalary -= subtractSalary;
+
+    // console.log(totalSalary);
+    // $('totalMonthly').empty();
+    // $('totalMonthly').append(totalSalary);
 
 }
 
