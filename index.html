@@ -14,18 +14,44 @@
     <form id="salaryCalculator">
     <div>
         <h2 id="addTitle">Add Employee</h2>
-        <input id="firstName" type="text"/>
-        <input id="lastName" type="text"/>
-        <input id="id" type="text"/>
-        <input id="position" type="text"/>
-        <input id="salary" type="number">
+        <!-- <div> -->
+            <!-- <label for="firstName">
+                First Name
+            </label> -->
+        <input id="firstName" type="text" placeholder="First Name"/>
+        <!-- </div> -->
+        <!-- <div> -->
+            <!-- <label for="lastName">
+                Last name
+            </label> -->
+        <input id="lastName" type="text" placeholder="Last Name"/>
+        <!-- </div> -->
+        <!-- <div>
+            <label for="id">
+                ID
+            </label> -->
+        <input id="id" type="text" placeholder="ID"/>
+        <!-- </div> -->
+        <!-- <div>
+            <label for="position">
+                Title
+            </label> -->
+        <input id="position" type="text" placeholder="Title"/>
+        <!-- </div> -->
+        <!-- <div>
+            <label for="salary">
+                Annual Salary
+            </label> -->
+        <input id="salary" type="number" placeholder="Annual Salary">
+        <!-- </div> -->
     </div>
+
     <button type="submit" id="submitBtn">Submit</button>
     
     </form>
     <h3>Employees</h3>
     <table id="employeeTable">
-        <tr>
+        <tr class="rowTitle">
             <td>First Name</td>
             <td>Last Name</td>
             <td>ID</td>
