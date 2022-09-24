@@ -53,6 +53,7 @@ function addEmployee(event){
     
 
     render();
+    return newEmployee;
 
 
 }
@@ -71,7 +72,8 @@ function render(){
         <td>${employee.lastName}</td>
         <td>${employee.idNum}</td>
         <td>${employee.jobTitle}</td>
-        <td>$${employee.salary}</td>
+        <td id="salary">${employee.salary}</td>
+        <td id="index">${employeeArray.indexOf(employee)}</td>
         <td>
         <button class="delete">Delete</button>
         </td>
@@ -89,20 +91,32 @@ function render(){
 
 }
 
-function dltEmployee(employeeArray){
+function dltEmployee(){
     console.log('In dltEmployee $(this)', $(this));
-    console.log(employeeArray);
+    //console.log(employeeArray);
 
     $(this).parent().parent().remove();
+    let subSalary = $(this).parent().parent().find("#salary").html();
+    let subMonthly = parseInt(subSalary);
+    console.log('what is this?', subMonthly);
+
+    totalSalary -= subMonthly;
+
+    $('#totalMonthly').empty();
+    $('#totalMonthly').append(totalSalary);
+
+    let deleteThis = $(this).parent().parent().find('#index').html();
+    employeeArray.splice(deleteThis, 1);
+    console.log(employeeArray);
 
     //let deleteThis = $(this).parent().parent().find('#delete').html();
 
-    let deleteThis = $(this).parent().parent().find(employeeArray.employeeIndex);
-    console.log(deleteThis);
+    //let deleteThis = $(this).parent().parent().find(employeeArray.employeeIndex);
+    // console.log(deleteThis);
 
-    employeeArray.splice(deleteThis, 1);
+    // employeeArray.splice(deleteThis, 1);
 
-    console.log(employeeArray);
+    // console.log(employeeArray);
 
     // let subtractSalary = $(this).parent().parent().find(employee.salary);
 
