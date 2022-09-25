@@ -1,3 +1,74 @@
 #index{
     display: none;
 }
+
+body{
+    margin: 0;
+}
+
+h2{
+    margin-top: 30px;
+    margin-left: 20px;
+    margin-bottom: 10px;
+    font-size: 30px;
+}
+
+
+#background{
+    
+}
+
+#salaryTitle{
+    background-color: grey;
+    width: 100%;
+    margin: 0;
+    text-align: center;
+    color: white;
+    padding: 30px;
+}
+
+.inputFields{
+    box-sizing: border-box;
+    margin-left: 10px;
+    width: auto;
+    
+
+}
+
+#submitBtn{
+    padding: 5px;
+    font-size: large;
+    width: 120px;
+    position: absolute;
+    border-radius: 10px;
+    top: 30%;
+    left: 750px;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+
+#employeeTable, tr, td{
+    border: 2px solid;
+    border-collapse: collapse;
+    table-layout: fixed;
+    width: auto;
+    margin: 5px;
+    padding: 10px;
+}
+#employeeTable{
+    width: 790px;
+    margin-left: 20px;
+}
+
+#month{
+    text-align: right;
+    margin-right: 20px;
+    font-size: 25px;
+}
+
+h3{
+    margin-left: 20px;
+    margin-top: 50px;
+    margin-bottom: 10px;
+    font-size: 30px;
+}

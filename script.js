@@ -1,17 +1,24 @@
+
+//global variables
 let employeeArray = [];
 let i = 0;
 let totalSalary = 0;
+let toMoney = '';
 
 $(document).ready(readyNow);
 
+//function to load on ready
 function readyNow(){
-    console.log('DOM, for the family!');
+
+    console.log('DOM is ready');
 
     $('#salaryCalculator').on('submit', addEmployee);
 
     $('#employeeTable').on('click', '.delete', dltEmployee);
+
 }
 
+//function to add new employee on button press
 function addEmployee(event){
 
     event.preventDefault();
@@ -26,8 +33,7 @@ function addEmployee(event){
         return;
     }
 
-
-    console.log('Adding new member to the family', $(this));
+    console.log('in addEmployee', $(this));
 
     let newEmployee = {
         employeeIndex: i,
@@ -38,26 +44,25 @@ function addEmployee(event){
         salary: $('#salary').val()
     }
 
-    console.log('New family member is', newEmployee);
+    console.log('New employee', newEmployee);
     employeeArray.push(newEmployee);
-    console.log('Members of the family', employeeArray);
+    console.log('Array of employees', employeeArray);
 
+    //trying to figure out how to delete off [i]
     i++;
-    console.log(newEmployee.employeeIndex);
+    console.log('Index last added', newEmployee.employeeIndex);
 
     let employeeSalary = parseInt(newEmployee.salary);
     
     totalSalary += employeeSalary;
-    console.log(totalSalary);
+    console.log('Total salary', totalSalary);
     
-    
-
     render();
-    return newEmployee;
-
+    checkTotal();
 
 }
 
+//function to output table to the DOM
 function render(){
     //$('#employeeTable > tr > :not(.rowTitle)').empty();
     //$('#employeeTable').empty();
@@ -72,7 +77,7 @@ function render(){
         <td>${employee.lastName}</td>
         <td>${employee.idNum}</td>
         <td>${employee.jobTitle}</td>
-        <td id="salary">${employee.salary}</td>
+        <td>$<span id="salary">${employee.salary}</span></td>
         <td id="index">${employeeArray.indexOf(employee)}</td>
         <td>
         <button class="delete">Delete</button>
@@ -81,55 +86,50 @@ function render(){
         `)
     }
     
-    $('#totalMonthly').empty();
-    $('#totalMonthly').append(totalSalary);
+    toMoney = totalSalary.toLocaleString("en-US");
 
-    //$('#month').empty();
-    //$('#month').append(`Total Monthly: $ ${totalSalary}`)
+    $('#totalMonthly').empty();
+    $('#totalMonthly').append(toMoney);
 
     clearInput();
+    checkTotal();
 
 }
 
+//function to delete employee
 function dltEmployee(){
     console.log('In dltEmployee $(this)', $(this));
-    //console.log(employeeArray);
 
     $(this).parent().parent().remove();
     let subSalary = $(this).parent().parent().find("#salary").html();
     let subMonthly = parseInt(subSalary);
-    console.log('what is this?', subMonthly);
+
+    console.log('Test to see if changed to number', subMonthly);
 
     totalSalary -= subMonthly;
-
+    toMoney = totalSalary.toLocaleString("en-US");
+    
     $('#totalMonthly').empty();
-    $('#totalMonthly').append(totalSalary);
+    $('#totalMonthly').append(toMoney);
 
+    //figured out how to delete from html index
     let deleteThis = $(this).parent().parent().find('#index').html();
     employeeArray.splice(deleteThis, 1);
-    console.log(employeeArray);
-
-    //let deleteThis = $(this).parent().parent().find('#delete').html();
-
-    //let deleteThis = $(this).parent().parent().find(employeeArray.employeeIndex);
-    // console.log(deleteThis);
-
-    // employeeArray.splice(deleteThis, 1);
-
-    // console.log(employeeArray);
-
-    // let subtractSalary = $(this).parent().parent().find(employee.salary);
-
-    // console.log(subtractSalary);
-
-    // totalSalary -= subtractSalary;
-
-    // console.log(totalSalary);
-    // $('totalMonthly').empty();
-    // $('totalMonthly').append(totalSalary);
+    
+    console.log('Array should have the deleted one removed',employeeArray);
+    checkTotal();
 
 }
 
+function checkTotal(){
+    if(totalSalary >= 20000){
+        $('#background').css('background-color', 'red')
+    }else{
+        $('#background').css('background-color', 'white')
+    }
+}
+
+//funtion to reset all input fields
 function clearInput(){
     $('#firstName').val('');
     $('#lastName').val('');
@@ -138,6 +138,7 @@ function clearInput(){
     $('#salary').val('');
 }
 
+//function to test if any fields are missing and 
 function missingInput(){
     if($('#firstName').val() === ''){
         alert('!!!MISSING FIRST NAME FIELD!!!');
