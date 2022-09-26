@@ -54,7 +54,7 @@ function addEmployee(event){
 
     let employeeSalary = parseInt(newEmployee.salary);
     
-    totalSalary += employeeSalary;
+    totalSalary += employeeSalary / 12;
     console.log('Total salary', totalSalary);
     
     render();
@@ -106,7 +106,7 @@ function dltEmployee(){
 
     console.log('Test to see if changed to number', subMonthly);
 
-    totalSalary -= subMonthly;
+    totalSalary -= subMonthly / 12;
     toMoney = totalSalary.toLocaleString("en-US");
     
     $('#totalMonthly').empty();
