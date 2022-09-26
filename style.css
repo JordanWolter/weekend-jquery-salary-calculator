@@ -58,6 +58,11 @@ h2{
 #employeeTable{
     width: 790px;
     margin-left: 20px;
+    
+}
+
+tr:nth-child(odd){
+    background-color: lightgrey;
 }
 
 #month{
@@ -71,4 +76,12 @@ h3{
     margin-top: 50px;
     margin-bottom: 10px;
     font-size: 30px;
+}
+
+.delete{
+    margin-left: 15px;
+    padding: 5px;
+    font-size: large;
+    width: 80px;
+    border-radius: 10px;
 }
